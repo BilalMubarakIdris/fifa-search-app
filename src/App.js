@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import SearchInput from './components/SearchInput'
+import playersData from './playersData'
+import { Switch, Route } from "react-router-dom";
+import PlayersDetails from './components/PlayersDetails'
+import Home from './components/Home';
+import Header from './components/Header';
+import Help from './components/Help';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+function App(){
+    return(
+        <div className="app">
+          <Header />
+        <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route exact path="/help">
+          <Help />
+        </Route>
+        <Route exact path="/playersDetails">
+          <SearchInput data={playersData}/>
+        </Route>
+        <Route path="/playersDetails/:serviceId">
+          <PlayersDetails  />
+        </Route>
+      </Switch>
     </div>
-  );
+    )
 }
-
-export default App;
+export default App
